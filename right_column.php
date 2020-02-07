@@ -30,12 +30,18 @@
          
             while($row = mysql_fetch_assoc($posts)){?>
                 <div class="post_section">
-            
-                    <span class="comment"><a href="blog_post.html">128</a></span>
-                    <? if ($param=="id") { ?>
+
+                    <? if ($param=="id") {
+                        $view=$row['view']+1;
+                        $viewQuery = mysql_query("UPDATE `posts` SET `view` = \"$view\" WHERE `posts`.`$param` = $value");
+                     ?>
+                        <span class="comment"><?=$view?></span>
                         <h2><?=$row['header']?></h2> 
                     <?}
-                    else{ ?>
+                    else{ 
+                        $view=$row['view']; 
+                        ?>
+                        <span class="comment"><a href="blog_post.html"><?=$view?></a></span>
                         <h2><a href="index.php?PostId=<?=$row['id']?>"><?=$row['header']?></a></h2> 
                     <?}?> 
                     
@@ -66,10 +72,10 @@
                         <a href="index.php?PostId=<?=$row['id']?>">Continue reading...</a> 
                     <?}?>            
                 </div>
-                 <? if ($param="id") { ?>
+                 <? if ($param=="id") { ?>
                     <!-- <div class="comment_tab">Comments</div> -->
-                        <div id="comment_section">
-                            <ol class="comments first_level"> 
+                    <div id="comment_section">
+                        <ol class="comments first_level"> 
                             <? $comments = mysql_query("SELECT * FROM post_comments WHERE `post_id`=$value"); 
                              while($row = mysql_fetch_assoc($comments)){ ?>
                                 <li>
@@ -79,8 +85,8 @@
                                         </div>
                                         <div class="comment_text">
                                         <? $user_id=$row['user_id'];
-                                           $userQuery = mysql_query("SELECT * FROM users WHERE `id`=?=$user_id");
-                                            $userRow=mysql_fetch_assoc($AuthorQuery); 
+                                           $userQuery = mysql_query("SELECT * FROM users WHERE `id`=$user_id");
+                                            $userRow=mysql_fetch_assoc($userQuery); 
                                             $user=$userRow['name'];
                                         ?>
                                             <div class="comment_author"><?=$user?><span class="date"><?=$row['date']?> </span><!-- <span class="time">12:30 AM</span> --></div>
@@ -96,7 +102,7 @@
                     <div id="comment_form">
                         <h3>Leave a comment</h3>
                         
-                        <form action="add_comment" method="post">
+                        <form action="add_comment.php" method="post">
                             <div class="form_row">
                                 <label><strong>Name</strong> (required)</label>
                                 <br />
@@ -105,13 +111,14 @@
                             <div class="form_row">
                                 <label><strong>Email</strong>  (required, will not be published)</label>
                                 <br />
-                                <input type="text" name="name" />
+                                <input type="text" name="email" />
                             </div>
                             <div class="form_row">
                                 <label><strong>Comment</strong></label>
                                 <br />
                                 <textarea  name="comment" rows="" cols=""></textarea>
                             </div>
+                            <input type="hidden" name="PostId" value="<?=$value?>">
                             <input type="submit" name="Submit" value="Submit" class="submit_btn" />
                         </form> 
                     </div>

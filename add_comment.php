@@ -1,10 +1,21 @@
+<?
+include 'bd.php';
+$username = $_POST['name'];
+$useremail = $_POST['email'];
 
-<form action="insert.php" method="post">
-	Name: <input type="text" name="name" value="<?=$row['name']?>"/>
-	Surname: <input type="text" name="surname" value="<?=$row['surname']?>"/>
-	Middle Name: <input type="text" name="middlename" value="<?=$row['middlename']?>">
-	Number: <input type="number" name="number" value="<?=$row['number']?>">
-	Position: <input type="text" name="position" value="<?=$row['position']?>">
-	<input type="hidden" name="id" value="<?=$row['id']?>">
-	<input type="submit">
-</form>
+$userQuery = mysql_query("SELECT `id` FROM users WHERE `name`=\"$username\" AND `email`=\"$useremail\"");
+$userRow = mysql_fetch_assoc($userQuery); 
+$user_id=$userRow['id'];
+$date= date (time());
+$comment = $_POST['comment'];
+$PostId = $_POST['PostId'];
+// echo "username=".$username."<br>"; 
+// echo "useremail=".$useremail."<br>";
+// echo "user_id=".$user_id."<br>";
+// echo "PostId=".$PostId."<br>";
+// echo "date=".$date."<br>";
+
+mysql_query("INSERT INTO `post_comments` (`user_id`, `date`, `comment`, `post_id`) VALUES ($user_id, \"$date\", \"$comment\", $PostId);");
+header("location:index.php?PostId=$PostId");
+exit();
+?>
