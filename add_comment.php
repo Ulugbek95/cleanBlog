@@ -9,11 +9,6 @@ $user_id=$userRow['id'];
 $date= date (time());
 $comment = $_POST['comment'];
 $PostId = $_POST['PostId'];
-// echo "username=".$username."<br>"; 
-// echo "useremail=".$useremail."<br>";
-// echo "user_id=".$user_id."<br>";
-// echo "PostId=".$PostId."<br>";
-// echo "date=".$date."<br>";
 
 mysql_query("INSERT INTO `post_comments` (`user_id`, `date`, `comment`, `post_id`) VALUES ($user_id, \"$date\", \"$comment\", $PostId);");
 header("location:index.php?PostId=$PostId");
