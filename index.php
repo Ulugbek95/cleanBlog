@@ -7,7 +7,7 @@
 <title>Clean Blog Template</title>
 <meta name="keywords" content="clean blog template, html css layout" />
 <meta name="description" content="Clean Blog Template is provided by templatemo.com" />
-<meta http-equiv="refresh" content="5"> 
+<!-- <meta http-equiv="refresh" content="5">  -->
 <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 
 <link href="s3slider.css" rel="stylesheet" type="text/css" />
