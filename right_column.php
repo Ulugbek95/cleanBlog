@@ -61,7 +61,7 @@
                         <?=$Author?>
                     <?}
                     else{?>
-                         <a href="index.php?AuthorId=<?=$AuthorRow['id']?>"><?=$Author?></a>
+                      <a href="index.php?AuthorId=<?=$AuthorRow['id']?>"><?=$Author?></a>
                     <?}?>
                     | <strong>Category:</strong> <a href="index.php?id=<?=$CategoryRow['id']?>"><?=$CategoryRow['name']?></a>
                     <img src="<?=$img?>" alt="image 1" />
