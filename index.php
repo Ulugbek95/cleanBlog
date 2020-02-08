@@ -49,6 +49,8 @@
 <? include 'footer.php';?>    
     <div class="cleaner"></div>
 </div> <!-- end of warpper -->
-
+<? 
+// header("refresh: 3"); 
+?>
 </body>
 </html>
