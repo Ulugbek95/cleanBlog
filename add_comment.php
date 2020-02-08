@@ -6,7 +6,7 @@ $useremail = $_POST['email'];
 $userQuery = mysql_query("SELECT `id` FROM users WHERE `name`=\"$username\" AND `email`=\"$useremail\"");
 $userRow = mysql_fetch_assoc($userQuery); 
 $user_id=$userRow['id'];
-$date= date (time());
+$date= date('Y-m-d',time());
 $comment = $_POST['comment'];
 $PostId = $_POST['PostId'];
 
