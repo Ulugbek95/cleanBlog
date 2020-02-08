@@ -1,5 +1,4 @@
     <div id="templatemo_right_column">
-    
         <div id="featured_project">
             <div id="slider">
                 <ul id="sliderContent">
@@ -27,7 +26,7 @@
         <div id="templatemo_main">
          <?
              $posts = mysql_query("SELECT * FROM posts WHERE `$param`=$value");
-         
+
             while($row = mysql_fetch_assoc($posts)){?>
                 <div class="post_section">
 
@@ -36,15 +35,15 @@
                         $viewQuery = mysql_query("UPDATE `posts` SET `view` = \"$view\" WHERE `posts`.`$param` = $value");
                      ?>
                         <span class="comment"><?=$view?></span>
-                        <h2><?=$row['header']?></h2> 
+                        <h2><?=$row['header']?></h2>
                     <?}
-                    else{ 
-                        $view=$row['view']; 
+                    else{
+                        $view=$row['view'];
                         ?>
                         <span class="comment"><a href="blog_post.html"><?=$view?></a></span>
-                        <h2><a href="index.php?PostId=<?=$row['id']?>"><?=$row['header']?></a></h2> 
-                    <?}?> 
-                    
+                        <h2><a href="index.php?PostId=<?=$row['id']?>"><?=$row['header']?></a></h2>
+                    <?}?>
+
                     <?
                         $img=$row['img'];
                         $Text=$row['Text'];
@@ -56,37 +55,37 @@
                         $CategoryQuery = mysql_query("SELECT * FROM categories WHERE `id`=$CategoryId");
                         $CategoryRow=mysql_fetch_assoc($CategoryQuery);
                         // $Category=$CategoryRow['name'];
-                    ?> 
-                    <strong>Date:</strong> <?=$row['date']?> | <strong>Author:</strong> 
+                    ?>
+                    <strong>Date:</strong> <?=$row['date']?> | <strong>Author:</strong>
                     <? if ($param=="id") { ?>
-                        <?=$Author?> 
+                        <?=$Author?>
                     <?}
                     else{?>
-                         <a href="index.php?AuthorId=<?=$AuthorRow['id']?>"><?=$Author?></a>  
-                    <?}?> 
+                         <a href="index.php?AuthorId=<?=$AuthorRow['id']?>"><?=$Author?></a>
+                    <?}?>
                     | <strong>Category:</strong> <a href="index.php?id=<?=$CategoryRow['id']?>"><?=$CategoryRow['name']?></a>
                     <img src="<?=$img?>" alt="image 1" />
-                    
+
                     <p><?=$Text?></p>
                     <? if ($param!="id") { ?>
-                        <a href="index.php?PostId=<?=$row['id']?>">Continue reading...</a> 
-                    <?}?>            
+                        <a href="index.php?PostId=<?=$row['id']?>">Continue reading...</a>
+                    <?}?>
                 </div>
                  <? if ($param=="id") { ?>
                     <!-- <div class="comment_tab">Comments</div> -->
                     <div id="comment_section">
-                        <ol class="comments first_level"> 
-                            <? $comments = mysql_query("SELECT * FROM post_comments WHERE `post_id`=$value"); 
+                        <ol class="comments first_level">
+                            <? $comments = mysql_query("SELECT * FROM post_comments WHERE `post_id`=$value");
                              while($row = mysql_fetch_assoc($comments)){ ?>
                                 <li>
-                                    <div class="comment_box commentbox1">    
+                                    <div class="comment_box commentbox1">
                                         <div class="gravatar">
                                             <img src="images/avator.png" alt="author">
                                         </div>
                                         <div class="comment_text">
                                         <? $user_id=$row['user_id'];
                                            $userQuery = mysql_query("SELECT * FROM users WHERE `id`=$user_id");
-                                            $userRow=mysql_fetch_assoc($userQuery); 
+                                            $userRow=mysql_fetch_assoc($userQuery);
                                             $user=$userRow['name'];
                                         ?>
                                             <div class="comment_author"><?=$user?><span class="date"><?=$row['date']?> </span><!-- <span class="time">12:30 AM</span> --></div>
@@ -94,14 +93,14 @@
                                             <div class="reply"><a href="#">Reply</a></div>
                                         </div>
                                         <div class="cleaner"></div>
-                                    </div>                        
+                                    </div>
                                 </li>
-                            <?}?> 
+                            <?}?>
                         </ol>
-                    </div> 
+                    </div>
                     <div id="comment_form">
                         <h3>Leave a comment</h3>
-                        
+
                         <form action="add_comment.php" method="post">
                             <div class="form_row">
                                 <label><strong>Name</strong> (required)</label>
@@ -120,11 +119,11 @@
                             </div>
                             <input type="hidden" name="PostId" value="<?=$value?>">
                             <input type="submit" name="Submit" value="Submit" class="submit_btn" />
-                        </form> 
+                        </form>
                     </div>
-                <?}?> 
-            <?}?>      
+                <?}?>
+            <?}?>
         </div>
-    
+
         <div class="cleaner"></div>
-  </div> 
+  </div>
